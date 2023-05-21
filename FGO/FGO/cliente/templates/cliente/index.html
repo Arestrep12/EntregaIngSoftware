@@ -1,0 +1,17 @@
+{% extends 'cliente/base.html' %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
+            <h1>Servicio de comida dentro del campus</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="card col-md-5 col-sm-12 offset-md-1 p-4 text-center">
+            <h2>Pide lo que quieras!</h2>
+            <a href="{% url 'order'%}" class="btn btn-outline-primary">Ordena ahora!</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,141 @@
+{% extends 'cliente/base.html' %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-12 col-sm-12 p-4">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="pt-5">
+                    {% for asado in asados %}
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ asado.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ asado.pk }}">
+                                    <label class="form-check-label">{{ asado.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ asado.price }}</p>
+                            </div>
+                            <p>{{ asado.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                {% endfor %}
+                </div>
+
+                <div class="pt-5">
+                    {% for almuerzo in almuerzos %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ almuerzo.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ almuerzo.pk }}">
+                                    <label class="form-check-label">{{ almuerzo.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ almuerzo.price }}</p>
+                            </div>
+                            <p>{{ almuerzo.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+
+                <div class="pt-5">
+                    {% for postre in postres %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ postre.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ postre.pk }}">
+                                    <label class="form-check-label">{{ postre.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ postre.price }}</p>
+                            </div>
+                            <p>{{ postre.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+
+                <div class="pt-5">
+                    {% for bebida in bebidas %}
+                    <div class="row mt-4">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="rounded" src="{{ bebida.image.url }}" width="150" height="100"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ bebida.pk }}">
+                                    <label class="form-check-label">{{ bebida.name }}</label>
+                                </div>
+                                <p class="font-weight-bold pl-5">{{ bebida.price }}</p>
+                            </div>
+                            <p>{{ bebida.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="id_cliente">ID de EPIK</label>
+                            <input required class="form-control" type="text" placeholder="1000010101" name="id_cliente" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="id_cliente">Nombre completo</label>
+                            <input required class="form-control" type="text" placeholder="Jhon Jairo Escobar" name="name" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="id_cliente">Correo Institucional</label>
+                            <input required class="form-control" type="text" placeholder="jhonjairoesco@eafit.edu.co" name="email" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#submitModal">
+                    ¡Confirma tu orden!
+                </button>
+                <!-- <button class="btn btn-dark mt-5">Place Order!</button> -->
+
+                <!-- Modal -->
+                <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="submitModalLabel">¡Confirma tu orden!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-dark">Confirmar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
